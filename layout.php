@@ -17,7 +17,7 @@ if (!isset($titulo)) $titulo = "Tienda Online";
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 
      <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="./media/img/styles/layout.css">
+    <link rel="stylesheet" href="./media/styles/layout.css">
 
 </head>
 <body>
@@ -42,6 +42,7 @@ if (!isset($titulo)) $titulo = "Tienda Online";
         <?= $contenido ?>
     </main>
 
+    <?php require 'about_us.php'; ?>
     <?php require './footer.php'; ?>
 
     <!-- Bootstrap JS -->

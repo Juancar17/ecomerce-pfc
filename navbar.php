@@ -1,8 +1,16 @@
 <?php
 session_start();
 ?>
+<style>
+    .nav-shadow {
+        box-shadow: 0 4px 10px rgba(245, 197, 24, 0.2);
+        transition: box-shadow 0.3s ease-in-out;
+        background-color: rgba(0, 0, 0, 0.9) !important;
+        backdrop-filter: blur(6px);
+    }
+</style>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-trasparent">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent sticky-top">
     <div class="container-fluid">
         <!-- Logo a la izquierda -->
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
@@ -17,8 +25,31 @@ session_start();
 
         <!-- Contenido colapsable -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <!-- Menú centrado -->
+            
+            <!-- Categorías centradas -->
             <ul class="navbar-nav mx-auto">
+                <li class="nav-item px-3">
+                    <a class="nav-link text-light fw-semibold" href="categoria.php?cat=zapatos">Zapatos</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link text-light fw-semibold" href="categoria.php?cat=ropa">Ropa</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link text-light fw-semibold" href="categoria.php?cat=accesorios">Accesorios</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link text-light fw-semibold" href="categoria.php?cat=rebajas">Rebajas</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link text-light fw-semibold" href="categoria.php?cat=nuevo">Nuevo</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link text-light fw-semibold" href="categoria.php?cat=tendencias">Tendencias</a>
+                </li>
+            </ul>
+
+            <!-- Menú usuario (Admin / Responsable / Cliente) -->
+            <ul class="navbar-nav ms-auto">
                 <?php if (isset($_SESSION['usuario_id'])): ?>
                     <?php if ($_SESSION['rol'] === 'admin'): ?>
                         <li class="nav-item">
@@ -54,12 +85,8 @@ session_start();
                             <a class="nav-link" href="mis_pedidos.php"><i class="bi bi-bag-check"></i> Mis Pedidos</a>
                         </li>
                     <?php endif; ?>
-                <?php endif; ?>
-            </ul>
 
-            <!-- Perfil a la derecha -->
-            <ul class="navbar-nav ms-auto">
-                <?php if (isset($_SESSION['usuario_id'])): ?>
+                    <!-- Perfil a la derecha -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['nombre']) ?>
@@ -76,13 +103,28 @@ session_start();
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php"><i class="bi bi-box-arrow-in-right"></i> Iniciar sesión</a>
+                        <a class="nav-link text-light" href="login.php">
+                            <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="register.php"><i class="bi bi-person-plus"></i> Registrarse</a>
+                        <a class="nav-link text-light" href="register.php">
+                            <i class="bi bi-person-plus"></i> Registrarse
+                        </a>
                     </li>
                 <?php endif; ?>
             </ul>
         </div>
     </div>
 </nav>
+
+<script>
+    window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 10) {
+            navbar.classList.add('nav-shadow');
+        } else {
+            navbar.classList.remove('nav-shadow');
+        }
+    });
+</script>

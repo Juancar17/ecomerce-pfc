@@ -123,9 +123,9 @@ $producto = $resultado->fetch_assoc();
     .text-muted {
         color: #888 !important;
     }
+
+
 </style>
-
-
 <div class="container py-5">
     <div class="row gx-5">
         <!-- Imagen -->
@@ -186,5 +186,8 @@ $producto = $resultado->fetch_assoc();
         }
     }
 </script>
+
+
+<?php require_once 'productos_relacionados.php'; ?>
 
 <?php require 'footer.php'; ?>

@@ -1,80 +1,82 @@
-<?php
-session_start();
-require 'conexion.php'; // Asegúrate de que la conexión a la base de datos esté incluida
-
-// Verifica si se ha enviado el formulario
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtener los datos del formulario
-    $nombre = $_POST['nombre'];
-    $correo = $_POST['correo'];
-    $contrasena = $_POST['contrasena'];
-    $contrasena_confirmada = $_POST['contrasena_confirmada'];
-    $direccion = $_POST['direccion'];
-    $pais = $_POST['pais'];
-    $telefono = $_POST['telefono'];
-    $ciudad = $_POST['ciudad'];
-    $codigo_postal = $_POST['codigo_postal'];
-
-    // Validar que los campos no estén vacíos
-    if (empty($nombre) || empty($correo) || empty($contrasena) || empty($contrasena_confirmada) || empty($direccion) || empty($pais) || empty($telefono) || empty($ciudad) || empty($codigo_postal)) {
-        $error = "Todos los campos son obligatorios.";
-    }
-    // Verificar que las contraseñas coincidan
-    elseif ($contrasena !== $contrasena_confirmada) {
-        $error = "Las contraseñas no coinciden.";
-    }
-    // Verificar la longitud de la contraseña
-    elseif (strlen($contrasena) < 6) {
-        $error = "La contraseña debe tener al menos 6 caracteres.";
-    }
-    // Verificar si el correo electrónico ya está registrado
-    else {
-        $query = "SELECT * FROM usuarios WHERE correo = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $correo); // Vincula el parámetro de la consulta
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        
-        if ($resultado->num_rows > 0) {
-            $error = "El correo electrónico ya está registrado.";
-        } else {
-            // Cifrar la contraseña usando AES_ENCRYPT
-            $clave_cifrado = 'almandrullos';  // La clave de cifrado
-            $contrasena_cifrada = openssl_encrypt($contrasena, 'AES-128-ECB', $clave_cifrado, OPENSSL_RAW_DATA);
-
-            // Insertar el nuevo usuario en la base de datos
-            $query = "INSERT INTO usuarios (nombre, correo, contrasena, direccion, pais, telefono, ciudad, codigo_postal) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("ssssssss", $nombre, $correo, $contrasena_cifrada, $direccion, $pais, $telefono, $ciudad, $codigo_postal);
-            $stmt->execute();
-
-            // Redirigir a la página de inicio de sesión
-            $_SESSION['success'] = "¡Te has registrado exitosamente! Ahora puedes iniciar sesión.";
-            header("Location: login.php");
-            exit();
-        }
-
-        // Cerrar la declaración
-        $stmt->close();
-    }
-
-    // Cerrar la conexión
-    mysqli_close($conn);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap 5 + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Tipografía -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #f8f9fa;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .form-container {
+            max-width: 550px;
+            margin: auto;
+            margin-top: 80px;
+            padding: 40px;
+            background-color: #111;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(245, 197, 24, 0.2);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            color: #f5c518;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            color: #f5c518;
+        }
+
+        .form-control {
+            background-color: #000;
+            border: 1px solid #333;
+            color: #f5c518;
+        }
+
+        .form-control::placeholder {
+            color: #888;
+        }
+
+        .btn-primary {
+            background-color: #f5c518;
+            border: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #e6b800;
+            color: #fff;
+        }
+
+        .alert {
+            border-radius: 8px;
+        }
+
+        a {
+            color: #f5c518;
+        }
+
+        a:hover {
+            color: #e6b800;
+        }
+    </style>
 </head>
 <body>
-
-<div class="container mt-5">
-    <h2 class="text-center">Registro de Usuario</h2>
+<?php require 'navbar.php';?>
+<div class="form-container">
+    <h2><i class="bi bi-person-plus-fill me-2"></i>Registro de Usuario</h2>
 
     <?php if (isset($error)): ?>
         <div class="alert alert-danger"><?= $error ?></div>
@@ -83,52 +85,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php unset($_SESSION['success']); ?>
     <?php endif; ?>
 
-    <form action="register.php" method="POST">
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required>
+    <form action="register.php" method="POST" class="mt-3">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
         </div>
-        <div class="form-group">
-            <label for="correo">Correo electrónico</label>
-            <input type="email" class="form-control" id="correo" name="correo" required>
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
         </div>
-        <div class="form-group">
-            <label for="contrasena">Contraseña</label>
+        <div class="mb-3">
+            <label for="contrasena" class="form-label">Contraseña</label>
             <input type="password" class="form-control" id="contrasena" name="contrasena" required>
         </div>
-        <div class="form-group">
-            <label for="contrasena_confirmada">Confirmar contraseña</label>
+        <div class="mb-3">
+            <label for="contrasena_confirmada" class="form-label">Confirmar contraseña</label>
             <input type="password" class="form-control" id="contrasena_confirmada" name="contrasena_confirmada" required>
         </div>
-        <div class="form-group">
-            <label for="direccion">Dirección</label>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
             <input type="text" class="form-control" id="direccion" name="direccion" required>
         </div>
-        <div class="form-group">
-            <label for="pais">País</label>
+        <div class="mb-3">
+            <label for="pais" class="form-label">País</label>
             <input type="text" class="form-control" id="pais" name="pais" required>
         </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono</label>
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
             <input type="text" class="form-control" id="telefono" name="telefono" required>
         </div>
-        <div class="form-group">
-            <label for="ciudad">Ciudad</label>
+        <div class="mb-3">
+            <label for="ciudad" class="form-label">Ciudad</label>
             <input type="text" class="form-control" id="ciudad" name="ciudad" required>
         </div>
-        <div class="form-group">
-            <label for="codigo_postal">Código Postal</label>
+        <div class="mb-4">
+            <label for="codigo_postal" class="form-label">Código Postal</label>
             <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" required>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
     </form>
 
-    <div class="mt-3 text-center">
-        <a href="login.php">¿Ya tienes cuenta? Inicia sesión aquí</a>
+    <div class="mt-4 text-center">
+        ¿Ya tienes cuenta? <a href="login.php">Inicia sesión aquí</a>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

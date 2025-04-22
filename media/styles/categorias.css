@@ -1,0 +1,70 @@
+body {
+  background-color: #000;
+  color: #f8f9fa;
+  font-family: "Open Sans", sans-serif;
+}
+
+h2,
+h3 {
+  color: #f5c518;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+}
+
+.card {
+  background-color: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(245, 197, 24, 0.4);
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.btn-outline-light {
+  border-color: #f5c518;
+  color: #f5c518;
+}
+
+.btn-outline-light:hover {
+  background-color: #f5c518;
+  color: #000;
+}
+
+.alert {
+  border-radius: 8px;
+}
+
+.alert-secondary {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  color: #ccc;
+}
+
+.alert-danger {
+  background-color: #330000;
+  border-color: #cc0000;
+  color: #fff;
+}
+
+.border-warning {
+  border-color: #f5c518 !important;
+}
+
+.text-warning {
+  color: #f5c518 !important;
+}
+
+.text-light {
+  color: #f8f9fa !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 0 10px rgba(245, 197, 24, 0.1);
+}

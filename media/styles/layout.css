@@ -1,0 +1,54 @@
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+
+.hero-section {
+  background-image: url("../img/hero-reloj.jpg"); /* Cambia esto por tu imagen real */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5%;
+}
+
+.hero-text h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  max-width: 500px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 10px;
+  font-weight: 500;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #f5c518;
+}
+
+.btn-outline-light:hover {
+  background-color: #f5c518;
+  color: #000;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  inset: 0;
+}
+
+main.container {
+  padding: 3rem 0;
+}

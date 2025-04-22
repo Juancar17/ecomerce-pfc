@@ -1,0 +1,22 @@
+footer {
+  background-color: #0c0c0c;
+  color: #ccc;
+}
+
+footer h6 {
+  color: #fff;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .btn-outline-warning {
+  border-color: #f5c518;
+  color: #f5c518;
+}
+
+footer .btn-outline-warning:hover {
+  background-color: #f5c518;
+  color: #000;
+}

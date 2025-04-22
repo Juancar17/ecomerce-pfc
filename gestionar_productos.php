@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $resultado = mysqli_query($conn, "SELECT * FROM productos");
 
 ?>
-<link rel="stylesheet" href="./media/img/styles/gestionProductos.css">
+<link rel="stylesheet" href="./media/styles/gestionProductos.css">
 <div class="container mt-5">
     <h2 class="mb-4">Gestionar Productos</h2>
 

@@ -9,7 +9,7 @@ ob_start();
 ?>
 
 <!-- Estilos -->
-<link rel="stylesheet" href="./media/img/styles/index.css">
+<link rel="stylesheet" href="./media/styles/index.css">
 
 
 <section class="text-center py-5 bg-black text-white">
@@ -33,7 +33,7 @@ ob_start();
                 <div class="card-body text-center bg-dark">
                     <h6 class="text-uppercase fw-bold mb-1 text-white"><?= htmlspecialchars($producto['nombre']) ?></h6>
                     <p class="mb-2 text-white">$<?= number_format($producto['precio'], 2) ?></p>
-                    <a href="producto.php?id=<?= $producto['id'] ?>" class="btn btn-dark btn-sm w-100">Ver Producto</a>
+                    <a href="producto.php?id=<?= $producto['id'] ?>" class="btn btn-outline-light mt-3">Ver Producto</a>
                 </div>
             </div>
         <?php endwhile; ?>
@@ -53,8 +53,8 @@ ob_start();
             <div class="category-card position-relative text-white" style="background-image: url('./media/img/1.png');">
                 <div class="overlay"></div>
                 <div class="category-content text-center position-relative">
-                    <h3 class="fw-bold">Sunglasses</h3>
-                    <a href="productos.php?categoria=sunglasses" class="btn btn-outline-light mt-3">View Collection</a>
+                    <h3 class="fw-bold">Relojes</h3>
+                    <a href="productos.php?categoria=sunglasses" class="btn btn-outline-light mt-3">Ver colección</a>
                 </div>
             </div>
         </div>
@@ -64,8 +64,8 @@ ob_start();
             <div class="category-card position-relative text-white" style="background-image: url('./media/img/2.png');">
                 <div class="overlay"></div>
                 <div class="category-content text-center position-relative">
-                    <h3 class="fw-bold">Watches</h3>
-                    <a href="productos.php?categoria=watches" class="btn btn-outline-light mt-3">View Collection</a>
+                    <h3 class="fw-bold">Pulseras</h3>
+                    <a href="productos.php?categoria=watches" class="btn btn-outline-light mt-3">Ver Colección</a>
                 </div>
             </div>
         </div>
@@ -75,13 +75,18 @@ ob_start();
             <div class="category-card position-relative text-white" style="background-image: url('./media/img/3.png');">
                 <div class="overlay"></div>
                 <div class="category-content text-center position-relative">
-                    <h3 class="fw-bold">Bracelets</h3>
-                    <a href="productos.php?categoria=bracelets" class="btn btn-outline-light mt-3">View Collection</a>
+                    <h3 class="fw-bold">Gafas de sol</h3>
+                    <a href="productos.php?categoria=bracelets" class="btn btn-outline-light mt-3">Ver Colección</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+
+
+
 
 
 <!-- Script -->
@@ -96,7 +101,9 @@ ob_start();
     }
 </script>
 
+
 <?php
 mysqli_close($conn);
 $contenido = ob_get_clean();
 require 'layout.php';
+?>

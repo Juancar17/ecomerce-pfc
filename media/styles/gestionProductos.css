@@ -1,0 +1,85 @@
+body {
+  background-color: #000000;
+}
+
+h2.mb-4 {
+  font-weight: 700;
+  color: #333;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.table thead th {
+  background-color: #212529 !important;
+  color: #fff;
+  font-weight: 600;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.btn-sm {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+}
+
+.form-control {
+  border-radius: 8px;
+}
+
+img {
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.table td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.btn-warning {
+  color: #000;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.alert-success,
+.alert-danger {
+  border-radius: 10px;
+}
+
+.form-control::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.text-muted {
+  font-size: 0.85rem;
+}
