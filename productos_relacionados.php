@@ -1,8 +1,7 @@
-<!-- Productos Relacionados -->
 <style>
 .related-products-container {
-    max-width: 800px; /* Aproximadamente la mitad de una pantalla grande */
-    margin: 0 auto; /* Centrado horizontal */
+    max-width: 800px; 
+    margin: 0 auto; 
 }
 
 .related-products h3 {
@@ -79,7 +78,7 @@ $relacionados = mysqli_query($conn, "SELECT * FROM productos WHERE id != $id ORD
                         <img src="<?= htmlspecialchars($rel['imagen']) ?>" class="card-img-top" alt="<?= htmlspecialchars($rel['nombre']) ?>">
                         <div class="card-body text-center">
                             <h5 class="card-title"><?= htmlspecialchars($rel['nombre']) ?></h5>
-                            <p class="card-text">$<?= number_format($rel['precio'], 2) ?></p>
+                            <p class="card-text"><?= number_format($rel['precio'], 2) ?>€</p>
                             <form action="producto.php" method="GET">
                                 <input type="hidden" name="id" value="<?= $rel['id'] ?>">
                                 <button class="btn btn-add">Ver producto</button>

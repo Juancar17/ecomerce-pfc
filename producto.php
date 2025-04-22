@@ -128,18 +128,16 @@ $producto = $resultado->fetch_assoc();
 </style>
 <div class="container py-5">
     <div class="row gx-5">
-        <!-- Imagen -->
         <div class="col-md-6">
             <img src="<?= htmlspecialchars($producto['imagen']) ?>" class="product-image" alt="<?= htmlspecialchars($producto['nombre']) ?>">
         </div>
 
-        <!-- Detalles -->
         <div class="col-md-6">
             <div class="product-details">
                 <p class="text-uppercase text-muted mb-1">Producto | <?= ucfirst($producto['nombre']) ?></p>
                 <h2><?= htmlspecialchars($producto['nombre']) ?></h2>
                 <p class="text-muted"><?= htmlspecialchars($producto['descripcion']) ?></p>
-                <div class="price">$<?= number_format($producto['precio'], 2) ?></div>
+                <div class="price"><?= number_format($producto['precio'], 2) ?>€</div>
 
                 <form action="agregar_al_carrito.php" method="POST">
                     <input type="hidden" name="id_producto" value="<?= $producto['id'] ?>">
@@ -156,7 +154,6 @@ $producto = $resultado->fetch_assoc();
         </div>
     </div>
 
-    <!-- Pestañas de Descripción y Reseñas -->
     <div class="tabs mt-5">
         <ul class="nav nav-tabs" id="productoTabs" role="tablist">
             <li class="nav-item">

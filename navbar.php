@@ -12,22 +12,17 @@ session_start();
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-transparent sticky-top">
     <div class="container-fluid">
-        <!-- Logo a la izquierda -->
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
-        <img src="media/img/logo.png" alt="Logo" width="140" height="140" class="d-inline-block align-text-top rounded-circle">
-    </a>
+            <img src="media/img/logo.png" alt="Logo" width="140" height="140" class="d-inline-block align-text-top rounded-circle">
+        </a>
 
-
-        <!-- Botón responsive -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Contenido colapsable -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            
-            <!-- Categorías centradas -->
+            <?php if (!isset($_SESSION['rol']) || $_SESSION['rol'] === 'usuario'): ?>
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item px-3">
                     <a class="nav-link text-light fw-semibold" href="categoria.php?cat=zapatos">Zapatos</a>
@@ -48,8 +43,8 @@ session_start();
                     <a class="nav-link text-light fw-semibold" href="categoria.php?cat=tendencias">Tendencias</a>
                 </li>
             </ul>
+            <?php endif; ?>
 
-            <!-- Menú usuario (Admin / Responsable / Cliente) -->
             <ul class="navbar-nav ms-auto">
                 <?php if (isset($_SESSION['usuario_id'])): ?>
                     <?php if ($_SESSION['rol'] === 'admin'): ?>
@@ -57,23 +52,20 @@ session_start();
                             <a class="nav-link" href="index.php"><i class="bi bi-house-door"></i> Inicio</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="gestionar_finanzas.php"><i class="bi bi-graph-up"></i> Gestionar Finanzas</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="gestionar_productos.php"><i class="bi bi-box-seam"></i> Gestionar Productos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="gestionar_usuarios.php"><i class="bi bi-people"></i> Gestionar Usuarios</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="gestionar_finanzas.php"><i class="bi bi-graph-up"></i> Gestionar Finanzas</a>
-                        </li>
                     <?php elseif ($_SESSION['rol'] === 'responsable'): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php"><i class="bi bi-house-door"></i> Inicio</a>
+                            <a class="nav-link" href="gestionar_productos.php"><i class="bi bi-box-seam"></i> Gestionar Productos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="gestionar_pedidos.php"><i class="bi bi-truck"></i> Gestionar Pedidos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="gestionar_productos.php"><i class="bi bi-box-seam"></i> Gestionar Productos</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
@@ -87,7 +79,6 @@ session_start();
                         </li>
                     <?php endif; ?>
 
-                    <!-- Perfil a la derecha -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['nombre']) ?>

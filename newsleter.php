@@ -2,19 +2,19 @@
   <div class="container text-center position-relative">
     <div class="row justify-content-between align-items-center">
       <div class="col-lg-6 text-start">
-        <h5 class="text-uppercase small fw-light mb-1">Stay Updated</h5>
+        <h5 class="text-uppercase small fw-light mb-1">Mantente al día</h5>
         <h2 class="display-4 fw-bold">Newsletter.</h2>
         <p class="mb-4">Al suscribirse a nuestro boletín, obtendrá acceso exclusivo a las últimas actualizaciones sobre nuevos arribos, lanzamientos de edición limitada y promociones especiales.</p>
       </div>
       <div class="col-lg-5">
         <form class="newsletter-form">
           <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Name" required>
+            <input type="text" class="form-control" placeholder="Nombre" required>
           </div>
           <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Email" required>
+            <input type="email" class="form-control" placeholder="Correo" required>
           </div>
-          <button type="submit" class="btn btn-outline-light px-4">Subscribe</button>
+          <button type="submit" class="btn btn-outline-light px-4">Suscribirse</button>
         </form>
       </div>
     </div>
