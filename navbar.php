@@ -14,8 +14,9 @@ session_start();
     <div class="container-fluid">
         <!-- Logo a la izquierda -->
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
-            <i class="bi bi-shop-window fs-4"></i> Mi E-commerce
-        </a>
+        <img src="media/img/logo.png" alt="Logo" width="140" height="140" class="d-inline-block align-text-top rounded-circle">
+    </a>
+
 
         <!-- Botón responsive -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 

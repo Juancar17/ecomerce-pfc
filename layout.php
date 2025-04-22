@@ -30,7 +30,7 @@ if (!isset($titulo)) $titulo = "Tienda Online";
         <div class="hero-section text-white">
             <div class="overlay"></div>
             <div class="hero-text position-relative z-1">
-                <h1>Timeless.</h1>
+                <h1>La Habana SHOP.</h1>
                 <p>Una tienda online diseñada para elevar tu estilo con elegancia y distinción.</p>
                 <a href="index.php#productos" class="btn btn-outline-light mt-3">Ver productos</a>
             </div>

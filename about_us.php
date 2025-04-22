@@ -4,12 +4,13 @@
 <!-- Features Section -->
 <section class="about-hero-section text-white text-center d-flex align-items-center justify-content-center">
   <div class="container">
-    <p class="text-uppercase text-muted small mb-2">The Founders</p>
-    <h1 class="display-4 fw-bold">About Us</h1>
+   
+    <h1 class="display-4 fw-bold">Nosotros</h1>
     <p class="lead mx-auto" style="max-width: 700px;">
-      Meet Alex and Jason, two best friends who shared a passion for men's fashion and accessories. With their combined expertise in e-commerce and their impeccable sense of style, they decided to embark on an entrepreneurial journey and founded <strong>Chrono</strong>.
+    Conoce a Juan Carlos y Juan Pedro, dos amigos apasionados por la moda masculina, el diseño y los complementos. Unidos por su creatividad, visión estética y conocimientos en desarrollo web y e-commerce, decidieron transformar su pasión en un proyecto con alma propia: <strong>Chrono</strong>.
+
+    Con una combinación perfecta de estilo, tecnología y atención al detalle, su objetivo es ofrecer una experiencia única, seleccionando productos que marcan tendencia y transmiten autenticidad. Cada artículo refleja el compromiso de ambos con la calidad y el diseño atemporal.
     </p>
-    <a href="#" class="btn btn-outline-light mt-3 px-4 py-2">Our Story</a>
   </div>
 </section>
 
@@ -39,3 +40,5 @@
     </div>
   </div>
 </section>
+<?php
+require 'newsleter.php'; ?>
